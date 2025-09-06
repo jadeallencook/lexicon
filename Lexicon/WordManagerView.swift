@@ -40,13 +40,13 @@ struct WordManagerView: View {
                                 showingAddWord = true
                             }
                             .buttonStyle(.borderedProminent)
-                            .tint(.orange)
+                            .tint(.brown)
                             
                             Button("Explore Words") {
                                 showingExploreWords = true
                             }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.blue)
+                            .buttonStyle(.bordered)
+                            .tint(.white)
                         }
                         .padding(.top, 20)
                     }
@@ -67,13 +67,13 @@ struct WordManagerView: View {
                                     showingAddWord = true
                                 }
                                 .buttonStyle(.borderedProminent)
-                                .tint(.orange)
+                                .tint(.brown)
                                 
                                 Button("Explore Words") {
                                     showingExploreWords = true
                                 }
-                                .buttonStyle(.borderedProminent)
-                                .tint(.blue)
+                                .buttonStyle(.bordered)
+                                .tint(.white)
                                 
                                 Spacer()
                             }

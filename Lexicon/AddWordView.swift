@@ -83,7 +83,7 @@ struct AddWordView: View {
                         saveWord()
                     }
                     .disabled(!isFormValid)
-                    .foregroundColor(isFormValid ? .orange : .gray)
+                    .foregroundColor(isFormValid ? .brown : .gray)
                 }
             }
         }

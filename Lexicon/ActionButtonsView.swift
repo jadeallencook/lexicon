@@ -24,8 +24,8 @@ struct ActionButtonsView: View {
                     Button("Study") {
                         onStudy()
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.purple)
+                    .buttonStyle(.bordered)
+                    .tint(.white)
                     
                     Spacer()
                 }
@@ -36,7 +36,7 @@ struct ActionButtonsView: View {
                     onManageWords()
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.blue)
+                .tint(.gray)
                 
                 Spacer()
             }

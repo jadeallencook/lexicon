@@ -93,15 +93,15 @@ struct ExploreWordsView: View {
                             Button("Hide") {
                                 hideCurrentWord()
                             }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.red)
+                            .buttonStyle(.bordered)
+                            .tint(.white)
                             .frame(maxWidth: .infinity)
                             
                             Button("Learn") {
                                 addCurrentWord()
                             }
                             .buttonStyle(.borderedProminent)
-                            .tint(.orange)
+                            .tint(.brown)
                             .frame(maxWidth: .infinity)
                         }
                     }
