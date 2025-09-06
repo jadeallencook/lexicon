@@ -11,8 +11,90 @@ struct WordManagerView: View {
     
     @State private var showingAddWord = false
     @State private var showingExploreWords = false
-    @State private var wordToDelete: Entry?
-    @State private var showingDeleteConfirmation = false
+    
+    private var emptyStateView: some View {
+        VStack(spacing: 20) {
+            Text("No words in your vocabulary")
+                .font(.title2)
+                .foregroundStyle(.white)
+                .bold()
+            
+            Text("Add words to your collection or explore available words to get started.")
+                .font(.body)
+                .foregroundStyle(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            
+            emptyStateButtons
+        }
+        .padding()
+    }
+    
+    private var emptyStateButtons: some View {
+        VStack(spacing: 16) {
+            actionButton(title: "Learn New Word") {
+                showingAddWord = true
+            }
+            
+            actionButton(title: "Explore Words") {
+                showingExploreWords = true
+            }
+        }
+        .padding(.top, 20)
+    }
+    
+    private func actionButton(title: String, action: @escaping () -> Void) -> some View {
+        Button(title, action: action)
+            .buttonStyle(.plain)
+            .font(.system(size: 16, weight: .medium))
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 48)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.gray.opacity(0.1))
+            )
+    }
+    
+    private var headerSection: some View {
+        VStack(spacing: 16) {
+            HStack {
+                Text("\(userWords.count) words in your vocabulary")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                Spacer()
+            }
+            
+            HStack(spacing: 16) {
+                actionButton(title: "Add New Word") {
+                    showingAddWord = true
+                }
+                
+                actionButton(title: "Explore Words") {
+                    showingExploreWords = true
+                }
+            }
+        }
+        .padding()
+        .background(Color.black)
+    }
+    
+    private var wordListSection: some View {
+        List {
+            ForEach(userWords, id: \.word) { word in
+                WordRowView(entry: word)
+                    .listRowBackground(Color.gray.opacity(0.1))
+                    .listRowSeparator(.hidden)
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        Button("Delete", role: .destructive) {
+                            onDeleteWord(word)
+                        }
+                    }
+            }
+        }
+        .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+    }
     
     var body: some View {
         NavigationView {
@@ -20,109 +102,11 @@ struct WordManagerView: View {
                 Color.black.ignoresSafeArea()
                 
                 if userWords.isEmpty {
-                    VStack(spacing: 20) {
-                        Text("📚")
-                            .font(.system(size: 60))
-                        
-                        Text("No words in your vocabulary")
-                            .font(.title2)
-                            .foregroundStyle(.white)
-                            .bold()
-                        
-                        Text("Add words to your collection or explore available words to get started.")
-                            .font(.body)
-                            .foregroundStyle(.gray)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
-                        
-                        VStack(spacing: 16) {
-                            Button("Learn New Word") {
-                                showingAddWord = true
-                            }
-                            .buttonStyle(.plain)
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 48)
-                            .background(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .fill(Color.gray.opacity(0.1))
-                            )
-                            
-                            Button("Explore Words") {
-                                showingExploreWords = true
-                            }
-                            .buttonStyle(.plain)
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 48)
-                            .background(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .fill(Color.gray.opacity(0.1))
-                            )
-                        }
-                        .padding(.top, 20)
-                    }
-                    .padding()
+                    emptyStateView
                 } else {
                     VStack(spacing: 0) {
-                        // Header with action buttons
-                        VStack(spacing: 16) {
-                            HStack {
-                                Text("\(userWords.count) words in your vocabulary")
-                                    .font(.headline)
-                                    .foregroundStyle(.white)
-                                Spacer()
-                            }
-                            
-                            HStack(spacing: 16) {
-                                Button("Learn New Word") {
-                                    showingAddWord = true
-                                }
-                                .buttonStyle(.plain)
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 48)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .fill(Color.gray.opacity(0.1))
-                                )
-                                
-                                Button("Explore Words") {
-                                    showingExploreWords = true
-                                }
-                                .buttonStyle(.plain)
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 48)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .fill(Color.gray.opacity(0.1))
-                                )
-                            }
-                        }
-                        .padding()
-                        .background(Color.black)
-                        
-                        // Word list
-                        List {
-                            ForEach(userWords, id: \.word) { word in
-                                WordRowView(entry: word)
-                                    .listRowBackground(Color.gray.opacity(0.1))
-                                    .listRowSeparator(.hidden)
-                            }
-                            .onDelete { indexSet in
-                                if let index = indexSet.first {
-                                    wordToDelete = userWords[index]
-                                    showingDeleteConfirmation = true
-                                }
-                            }
-                        }
-                        .listStyle(.plain)
-                        .scrollContentBackground(.hidden)
+                        headerSection
+                        wordListSection
                     }
                 }
             }
@@ -149,18 +133,6 @@ struct WordManagerView: View {
                 onAddToCurriculum: onAddWord,
                 showBackButton: true
             )
-        }
-        .alert("Delete Word", isPresented: $showingDeleteConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Delete", role: .destructive) {
-                if let word = wordToDelete {
-                    onDeleteWord(word)
-                }
-            }
-        } message: {
-            if let word = wordToDelete {
-                Text("Are you sure you want to delete '\(word.word.capitalized)' from your vocabulary?")
-            }
         }
     }
 }

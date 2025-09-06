@@ -3,7 +3,7 @@ import Foundation
 /// Represents a dictionary entry with word information including its definition and usage example.
 /// This struct is used to store vocabulary words along with their grammatical function,
 /// meaning, and contextual examples for the Lexicon app.
-struct Entry: Codable, Identifiable {
+struct Entry: Codable, Identifiable, Equatable {
     let id = UUID()
     let word: String
     let function: String
