@@ -12,6 +12,7 @@ struct ExploreWordsView: View {
     @State private var availableWords: [Entry] = []
     @State private var currentIndex = 0
     @State private var isLoading = true
+    @StateObject private var speechService = SpeechService()
     
     private let userWords: [Entry]
     private let hiddenWordsKey = "hiddenWords"
@@ -48,64 +49,82 @@ struct ExploreWordsView: View {
                             .padding(.horizontal)
                     }
                 } else {
-                    VStack(alignment: .leading, spacing: 20) {
-                        // Progress indicator
-                        HStack {
-                            Text("Word \(currentIndex + 1) of \(availableWords.count)")
-                                .font(.caption)
-                                .foregroundStyle(.gray)
-                            Spacer()
+                    VStack(spacing: 0) {
+                        // Progress indicator at top
+                        VStack(spacing: 16) {
+                            HStack {
+                                Text("Word \(currentIndex + 1) of \(availableWords.count)")
+                                    .font(.caption)
+                                    .foregroundStyle(.gray)
+                                Spacer()
+                            }
+                            
+                            // Progress bar
+                            ProgressView(value: Double(currentIndex + 1), total: Double(availableWords.count))
+                                .tint(.white)
                         }
-                        
-                        // Progress bar
-                        ProgressView(value: Double(currentIndex + 1), total: Double(availableWords.count))
-                            .tint(.brown)
+                        .padding(.horizontal)
+                        .padding(.top)
                         
                         Spacer()
                         
-                        // Current word display - homepage style
+                        // Current word display - centered
                         if currentIndex < availableWords.count {
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Explore Words")
-                                    .font(.largeTitle).bold()
-                                    .foregroundStyle(.white)
-                                
+                            VStack(spacing: 16) {
                                 WordDisplayView(
                                     entry: availableWords[currentIndex],
-                                    onPronounce: { },
-                                    onStop: { },
-                                    isSpeaking: false
+                                    onPronounce: { pronounceWord() },
+                                    onStop: { speechService.stop() },
+                                    isSpeaking: speechService.isSpeaking
                                 )
-                            }
-                        }
                         
-                        Spacer()
-                        
-                        // Action buttons
-                        HStack(spacing: 12) {
+                                // Action buttons directly under card
+                                HStack(spacing: 16) {
                             Button("Skip") {
                                 skipWord()
                             }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.gray)
+                            .buttonStyle(.plain)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
+                            .frame(height: 48)
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(Color.gray.opacity(0.1))
+                            )
                             
                             Button("Hide") {
                                 hideCurrentWord()
                             }
-                            .buttonStyle(.bordered)
-                            .tint(.white)
+                            .buttonStyle(.plain)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
+                            .frame(height: 48)
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(Color.gray.opacity(0.1))
+                            )
                             
                             Button("Learn") {
                                 addCurrentWord()
                             }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.brown)
+                            .buttonStyle(.plain)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
+                            .frame(height: 48)
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(Color.gray.opacity(0.1))
+                            )
+                                }
+                            }
+                            .padding(.horizontal)
                         }
+                        
+                        Spacer()
                     }
-                    .padding()
                 }
             }
             .navigationTitle(showBackButton ? "Explore Words" : "Explore Words")
@@ -215,5 +234,10 @@ struct ExploreWordsView: View {
         } catch {
             print("Error saving hidden words: \(error)")
         }
+    }
+    
+    private func pronounceWord() {
+        guard currentIndex < availableWords.count else { return }
+        speechService.speak(availableWords[currentIndex].word)
     }
 }

@@ -14,6 +14,8 @@ struct StudyModeView: View {
     @State private var showingResult = false
     @State private var isCorrect = false
     @State private var questions: [StudyQuestion] = []
+    @State private var correctAnswers = 0
+    @State private var showingFinalResults = false
     
     var body: some View {
         NavigationView {
@@ -36,6 +38,37 @@ struct StudyModeView: View {
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                     }
+                } else if showingFinalResults {
+                    // Final results screen
+                    VStack(spacing: 24) {
+                        Spacer()
+                        
+                        Text("\(Int(Double(correctAnswers) / Double(questions.count) * 100))%")
+                            .font(.system(size: 48, weight: .bold, design: .serif))
+                            .foregroundStyle(.white)
+                        
+                        Text("You got \(correctAnswers)/\(questions.count) right")
+                            .font(.title2)
+                            .foregroundStyle(.gray)
+                        
+                        Spacer()
+                        
+                        Button("Done") {
+                            isPresented = false
+                        }
+                        .buttonStyle(.plain)
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.black)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 48)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color.white)
+                        )
+                        
+                        Spacer()
+                    }
+                    .padding()
                 } else if let question = currentQuestion {
                     VStack(spacing: 24) {
                         // Progress indicator
@@ -48,25 +81,28 @@ struct StudyModeView: View {
                         
                         // Progress bar
                         ProgressView(value: Double(currentQuestionIndex + 1), total: Double(questions.count))
-                            .tint(.brown)
+                            .tint(.white)
                         
                         Spacer()
                         
-                        // Definition
-                        VStack(spacing: 16) {
-                            Text("What word matches this definition?")
-                                .font(.headline)
-                                .foregroundStyle(.brown)
-                                .multilineTextAlignment(.center)
+                        // Definition card
+                        VStack(alignment: .leading, spacing: 16) {
+                            HStack {
+                                Text("What word matches this definition?")
+                                    .font(.headline)
+                                    .foregroundStyle(.white)
+                                Spacer()
+                            }
                             
                             Text(question.definition)
-                                .font(.title3)
+                                .font(.system(size: 18, weight: .medium))
                                 .foregroundStyle(.white)
-                                .bold()
-                                .multilineTextAlignment(.center)
-                                .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(12)
+                                .padding(24)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .fill(Color.gray.opacity(0.1))
+                                )
                         }
                         
                         Spacer()
@@ -84,25 +120,34 @@ struct StudyModeView: View {
                                         Spacer()
                                     }
                                     .padding()
-                                    .background(buttonBackgroundColor(for: option))
-                                    .cornerRadius(12)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(buttonBorderColor(for: option), lineWidth: 2)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .fill(buttonBackgroundColor(for: option))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 16)
+                                                    .stroke(buttonBorderColor(for: option), lineWidth: 2)
+                                            )
                                     )
                                 }
                                 .disabled(showingResult)
                             }
                         }
                         
-                        if showingResult {
-                            Button(currentQuestionIndex < questions.count - 1 ? "Next Question" : "Finish Study") {
-                                nextQuestion()
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.brown)
-                            .padding(.top, 20)
+                        // Always show Next Question button
+                        Button(currentQuestionIndex < questions.count - 1 ? "Next Question" : "Finish Study") {
+                            nextQuestion()
                         }
+                        .buttonStyle(.plain)
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(selectedAnswer != nil ? .black : .gray)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 48)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(selectedAnswer != nil ? Color.white : Color.gray.opacity(0.3))
+                        )
+                        .disabled(selectedAnswer == nil)
+                        .padding(.top, 20)
                         
                         Spacer()
                     }
@@ -157,6 +202,11 @@ struct StudyModeView: View {
         isCorrect = answer == question.correctAnswer
         showingResult = true
         
+        // Track correct answers
+        if isCorrect {
+            correctAnswers += 1
+        }
+        
         // Add haptic feedback
         let impact = UIImpactFeedbackGenerator(style: isCorrect ? .medium : .heavy)
         impact.impactOccurred()
@@ -169,23 +219,23 @@ struct StudyModeView: View {
             selectedAnswer = nil
             showingResult = false
         } else {
-            // Study session complete
-            isPresented = false
+            // Study session complete - show final results
+            showingFinalResults = true
         }
     }
     
     private func buttonBackgroundColor(for option: String) -> Color {
         guard showingResult, let selected = selectedAnswer else {
-            return Color.gray.opacity(0.2)
+            return Color.gray.opacity(0.1)
         }
         
         if option == selected {
-            return isCorrect ? .green.opacity(0.3) : .red.opacity(0.3)
+            return isCorrect ? .green.opacity(0.2) : .red.opacity(0.2)
         } else if option == currentQuestion?.correctAnswer {
-            return .green.opacity(0.3)
+            return .green.opacity(0.2)
         }
         
-        return Color.gray.opacity(0.2)
+        return Color.gray.opacity(0.1)
     }
     
     private func buttonBorderColor(for option: String) -> Color {
@@ -203,16 +253,6 @@ struct StudyModeView: View {
     }
     
     private func buttonTextColor(for option: String) -> Color {
-        guard showingResult else {
-            return .white
-        }
-        
-        if option == currentQuestion?.correctAnswer {
-            return .green
-        } else if option == selectedAnswer && !isCorrect {
-            return .red
-        }
-        
         return .white
     }
 }

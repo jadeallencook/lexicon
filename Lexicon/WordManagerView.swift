@@ -35,18 +35,32 @@ struct WordManagerView: View {
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                         
-                        VStack(spacing: 12) {
+                        VStack(spacing: 16) {
                             Button("Learn New Word") {
                                 showingAddWord = true
                             }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.brown)
+                            .buttonStyle(.plain)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 48)
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(Color.gray.opacity(0.1))
+                            )
                             
                             Button("Explore Words") {
                                 showingExploreWords = true
                             }
-                            .buttonStyle(.bordered)
-                            .tint(.white)
+                            .buttonStyle(.plain)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 48)
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(Color.gray.opacity(0.1))
+                            )
                         }
                         .padding(.top, 20)
                     }
@@ -62,20 +76,32 @@ struct WordManagerView: View {
                                 Spacer()
                             }
                             
-                            HStack(spacing: 12) {
+                            HStack(spacing: 16) {
                                 Button("Learn New Word") {
                                     showingAddWord = true
                                 }
-                                .buttonStyle(.borderedProminent)
-                                .tint(.brown)
+                                .buttonStyle(.plain)
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 48)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .fill(Color.gray.opacity(0.1))
+                                )
                                 
                                 Button("Explore Words") {
                                     showingExploreWords = true
                                 }
-                                .buttonStyle(.bordered)
-                                .tint(.white)
-                                
-                                Spacer()
+                                .buttonStyle(.plain)
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 48)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .fill(Color.gray.opacity(0.1))
+                                )
                             }
                         }
                         .padding()
@@ -148,12 +174,12 @@ struct WordRowView: View {
             HStack {
                 Text(entry.word.capitalized)
                     .font(.headline)
-                    .foregroundStyle(.brown)
+                    .foregroundStyle(.white)
                     .bold()
                 
                 Text("(\(entry.function))")
                     .font(.subheadline)
-                    .foregroundStyle(.brown)
+                    .foregroundStyle(.gray)
                 
                 Spacer()
             }
