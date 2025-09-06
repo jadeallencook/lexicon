@@ -10,16 +10,19 @@ struct ContentView: View {
     @State private var showingWordManager = false
     
     var body: some View {
-        ZStack(alignment: .leading) {
+        ZStack {
             Color.black.ignoresSafeArea()
             
             if viewModel.isLoading {
                 LoadingView()
             } else {
-                VStack(alignment: .leading) {
-                    Text("Lexicon")
-                        .font(.largeTitle).bold()
-                        .foregroundStyle(.white)
+                VStack(spacing: 16) {
+                    HStack {
+                        Text("Lexicon")
+                            .font(.system(size: 48, weight: .bold, design: .serif))
+                            .foregroundStyle(.white)
+                        Spacer()
+                    }
                     
                     if let entry = viewModel.currentEntry {
                         WordDisplayView(
@@ -49,10 +52,20 @@ struct ContentView: View {
                             )
                         }
                     }
+                    
+                    // Developer footer
+                    Text("Developed by @jadeallencook")
+                        .font(.system(size: 12, weight: .regular))
+                        .foregroundColor(.gray.opacity(0.6))
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.top, 24)
                 }
-                .padding(16)
+                .padding(.horizontal, 24)
+                .padding(.top, 60)
+                .padding(.bottom, 40)
             }
         }
+        .background(Color.black.ignoresSafeArea())
         .task {
             await viewModel.loadWords()
         }

@@ -11,35 +11,50 @@ struct ActionButtonsView: View {
     let hasWords: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(spacing: 16) {
             if hasWords {
-                HStack(spacing: 12) {
+                HStack(spacing: 16) {
                     Button("Shuffle") {
                         onShuffle()
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.brown)
+                    .buttonStyle(.plain)
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 48)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color.gray.opacity(0.1))
+                    )
                     .disabled(isDisabled)
                     
                     Button("Study") {
                         onStudy()
                     }
-                    .buttonStyle(.bordered)
-                    .tint(.white)
-                    
-                    Spacer()
+                    .buttonStyle(.plain)
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 48)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color.gray.opacity(0.1))
+                    )
                 }
             }
             
-            HStack(spacing: 12) {
-                Button("Manage Words") {
-                    onManageWords()
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.gray)
-                
-                Spacer()
+            Button("Manage Words") {
+                onManageWords()
             }
+            .buttonStyle(.plain)
+            .font(.system(size: 16, weight: .medium))
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 48)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.gray.opacity(0.1))
+            )
         }
         .padding(.top, 16)
     }

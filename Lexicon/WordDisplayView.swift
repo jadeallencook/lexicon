@@ -10,44 +10,62 @@ struct WordDisplayView: View {
     let isSpeaking: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text(headerText(for: entry))
-                    .font(.callout).bold()
-                    .foregroundStyle(.brown)
-                
-                Button {
-                    if isSpeaking {
-                        onStop()
-                    } else {
-                        onPronounce()
+        VStack(alignment: .leading, spacing: 0) {
+            // Top section: word, function, speaker, definition
+            VStack(alignment: .leading, spacing: 16) {
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(entry.word.capitalized)
+                            .font(.system(size: 24, weight: .medium, design: .serif))
+                            .foregroundStyle(.white)
+                            .lineLimit(1)
+                            .fixedSize(horizontal: false, vertical: true)
+                        
+                        Text("(\(entry.function))")
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundStyle(.gray)
                     }
-                } label: {
-                    Image(systemName: isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
-                        .foregroundColor(.brown)
-                        .font(.callout)
+                    
+                    Spacer()
+                    
+                    Button {
+                        if isSpeaking {
+                            onStop()
+                        } else {
+                            onPronounce()
+                        }
+                    } label: {
+                        Image(systemName: isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                            .foregroundColor(.white)
+                            .font(.title2)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
                 
-                Spacer()
+                Text(entry.definition)
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundStyle(.white)
+                    .lineLimit(3)
             }
             
-            Text(entry.definition)
-                .font(.callout)
-                .foregroundStyle(.white)
-                .bold()
+            Spacer()
             
+            // Bottom section: example anchored at bottom
             Text(entry.example)
-                .font(.footnote)
-                .foregroundStyle(.white)
-                .padding(.top, 8)
+                .font(.system(size: 16, weight: .regular))
+                .foregroundStyle(.gray)
+                .italic()
+                .lineLimit(2)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(height: 120, alignment: .top)
-        .padding(.vertical, 3)
+        .padding(24)
+        .frame(height: 240)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.gray.opacity(0.1))
+        )
+        .padding(.horizontal, 0)
     }
     
-    private func headerText(for entry: Entry) -> String {
-        let word = entry.word.capitalized
-        return "\(word) (\(entry.function))"
-    }
 }
