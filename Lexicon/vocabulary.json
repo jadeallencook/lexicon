@@ -1,0 +1,350 @@
+[
+    {
+        "word": "prevaricate",
+        "function": "verb",
+        "definition": "To speak or act in an evasive way, often to mislead or avoid telling the truth.",
+        "example": "When asked about the issue, he began to prevaricate."
+    },
+    {
+        "word": "petulant",
+        "function": "adjective",
+        "definition": "Childishly sulky or bad-tempered.",
+        "example": "Her petulant attitude made the meeting uncomfortable."
+    },
+    {
+        "word": "phlegmatic",
+        "function": "adjective",
+        "definition": "Having an unemotional and stolidly calm disposition.",
+        "example": "He remained phlegmatic despite the chaos around him."
+    },
+    {
+        "word": "fervent",
+        "function": "adjective",
+        "definition": "Having or displaying a passionate intensity.",
+        "example": "Her fervent speech moved the audience to action."
+    },
+    {
+        "word": "sagacious",
+        "function": "adjective",
+        "definition": "Having or showing keen mental discernment and good judgment.",
+        "example": "The sagacious mentor guided her through difficult choices."
+    },
+    {
+        "word": "emulous",
+        "function": "adjective",
+        "definition": "Eager or ambitious to equal or surpass another.",
+        "example": "He was emulous of his colleague\u2019s achievements."
+    },
+    {
+        "word": "reticent",
+        "function": "adjective",
+        "definition": "Not revealing one's thoughts or feelings readily.",
+        "example": "She was reticent when asked about her past."
+    },
+    {
+        "word": "pernicious",
+        "function": "adjective",
+        "definition": "Having a harmful effect, especially in a gradual or subtle way.",
+        "example": "The pernicious rumor spread quickly through the office."
+    },
+    {
+        "word": "stoicism",
+        "function": "noun",
+        "definition": "The endurance of pain or hardship without display of feelings.",
+        "example": "He faced the criticism with calm stoicism."
+    },
+    {
+        "word": "enigmatic",
+        "function": "adjective",
+        "definition": "Difficult to interpret or understand; mysterious.",
+        "example": "Her enigmatic smile left them guessing."
+    },
+    {
+        "word": "melancholy",
+        "function": "adjective",
+        "definition": "Characterized by or causing sadness.",
+        "example": "There was a melancholy tone to the music."
+    },
+    {
+        "word": "wistful",
+        "function": "adjective",
+        "definition": "Having a feeling of vague or regretful longing.",
+        "example": "He gave a wistful look at the old photographs."
+    },
+    {
+        "word": "ardent",
+        "function": "adjective",
+        "definition": "Very enthusiastic or passionate.",
+        "example": "She was an ardent supporter of animal rights."
+    },
+    {
+        "word": "aloof",
+        "function": "adjective",
+        "definition": "Not friendly or forthcoming; distant.",
+        "example": "He stayed aloof during the group discussion."
+    },
+    {
+        "word": "elated",
+        "function": "adjective",
+        "definition": "Extremely happy or proud.",
+        "example": "She felt elated after completing the marathon."
+    },
+    {
+        "word": "despondent",
+        "function": "adjective",
+        "definition": "In low spirits from loss of hope or courage.",
+        "example": "He was despondent after the rejection letter."
+    },
+    {
+        "word": "placid",
+        "function": "adjective",
+        "definition": "Calm and peaceful.",
+        "example": "Her placid demeanor eased the tension in the room."
+    },
+    {
+        "word": "contrite",
+        "function": "adjective",
+        "definition": "Feeling or expressing remorse.",
+        "example": "He was contrite after realizing his mistake."
+    },
+    {
+        "word": "ebullient",
+        "function": "adjective",
+        "definition": "Cheerful and full of energy.",
+        "example": "Her ebullient mood brightened everyone\u2019s day."
+    },
+    {
+        "word": "apathetic",
+        "function": "adjective",
+        "definition": "Showing no interest or concern.",
+        "example": "He was apathetic toward the political debate."
+    },
+    {
+        "word": "zealous",
+        "function": "adjective",
+        "definition": "Full of fervor for a cause.",
+        "example": "The zealous campaigner worked day and night."
+    },
+    {
+        "word": "morose",
+        "function": "adjective",
+        "definition": "Sullen and ill-tempered.",
+        "example": "He became morose after hearing the bad news."
+    },
+    {
+        "word": "vindictive",
+        "function": "adjective",
+        "definition": "Having a strong desire for revenge.",
+        "example": "Her vindictive remarks shocked her friends."
+    },
+    {
+        "word": "benevolent",
+        "function": "adjective",
+        "definition": "Well-meaning and kindly.",
+        "example": "The benevolent stranger offered to help."
+    },
+    {
+        "word": "malevolent",
+        "function": "adjective",
+        "definition": "Having or showing a wish to do evil.",
+        "example": "The malevolent glare made her uneasy."
+    },
+    {
+        "word": "magnanimous",
+        "function": "adjective",
+        "definition": "Generous or forgiving.",
+        "example": "He was magnanimous toward his defeated opponent."
+    },
+    {
+        "word": "callous",
+        "function": "adjective",
+        "definition": "Insensitive and cruel.",
+        "example": "His callous attitude upset his coworkers."
+    },
+    {
+        "word": "intrepid",
+        "function": "adjective",
+        "definition": "Fearless and adventurous.",
+        "example": "The intrepid reporter pursued the dangerous story."
+    },
+    {
+        "word": "timorous",
+        "function": "adjective",
+        "definition": "Lacking confidence; fearful.",
+        "example": "She was timorous when meeting new people."
+    },
+    {
+        "word": "forlorn",
+        "function": "adjective",
+        "definition": "Pitifully sad and abandoned.",
+        "example": "The dog looked forlorn in the rain."
+    },
+    {
+        "word": "effervescent",
+        "function": "adjective",
+        "definition": "Lively and enthusiastic.",
+        "example": "Her effervescent charm won everyone over."
+    },
+    {
+        "word": "querulous",
+        "function": "adjective",
+        "definition": "Complaining in a petulant way.",
+        "example": "The querulous customer demanded to see the manager."
+    },
+    {
+        "word": "sullen",
+        "function": "adjective",
+        "definition": "Bad-tempered and sulky.",
+        "example": "He sat in sullen silence."
+    },
+    {
+        "word": "arduous",
+        "function": "adjective",
+        "definition": "Involving or requiring strenuous effort.",
+        "example": "It was an arduous journey through the mountains."
+    },
+    {
+        "word": "mirthful",
+        "function": "adjective",
+        "definition": "Full of merriment.",
+        "example": "The mirthful laughter filled the room."
+    },
+    {
+        "word": "implacable",
+        "function": "adjective",
+        "definition": "Unable to be appeased or pacified.",
+        "example": "Her implacable stance made negotiations impossible."
+    },
+    {
+        "word": "dour",
+        "function": "adjective",
+        "definition": "Relentlessly severe or gloomy.",
+        "example": "The coach\u2019s dour expression worried the players."
+    },
+    {
+        "word": "volatile",
+        "function": "adjective",
+        "definition": "Liable to change rapidly, especially for the worse.",
+        "example": "His volatile temper made him difficult to work with."
+    },
+    {
+        "word": "affable",
+        "function": "adjective",
+        "definition": "Friendly and easy to talk to.",
+        "example": "The affable host made everyone feel welcome."
+    },
+    {
+        "word": "stoic",
+        "function": "adjective",
+        "definition": "Enduring pain without complaint.",
+        "example": "He remained stoic during the surgery."
+    },
+    {
+        "word": "morbid",
+        "function": "adjective",
+        "definition": "Characterized by an abnormal interest in disturbing subjects.",
+        "example": "She had a morbid fascination with crime stories."
+    },
+    {
+        "word": "acerbic",
+        "function": "adjective",
+        "definition": "Sharp and forthright in speech.",
+        "example": "His acerbic wit often offended others."
+    },
+    {
+        "word": "resolute",
+        "function": "adjective",
+        "definition": "Admirably purposeful and determined.",
+        "example": "She remained resolute in her decision."
+    },
+    {
+        "word": "blithe",
+        "function": "adjective",
+        "definition": "Showing a casual and cheerful indifference.",
+        "example": "His blithe disregard for rules annoyed his boss."
+    },
+    {
+        "word": "capricious",
+        "function": "adjective",
+        "definition": "Given to sudden changes of mood or behavior.",
+        "example": "Her capricious nature made her unpredictable."
+    },
+    {
+        "word": "stoop",
+        "function": "verb",
+        "definition": "To lower oneself morally.",
+        "example": "He refused to stoop to his rival\u2019s level."
+    },
+    {
+        "word": "pensive",
+        "function": "adjective",
+        "definition": "Engaged in deep or serious thought.",
+        "example": "She grew pensive after reading the letter."
+    },
+    {
+        "word": "coerce",
+        "function": "verb",
+        "definition": "To persuade someone by force or threats.",
+        "example": "They tried to coerce him into signing the contract."
+    },
+    {
+        "word": "rapturous",
+        "function": "adjective",
+        "definition": "Characterized by great joy or enthusiasm.",
+        "example": "The crowd gave a rapturous applause."
+    },
+    {
+        "word": "melodramatic",
+        "function": "adjective",
+        "definition": "Exaggerated and emotional.",
+        "example": "Her melodramatic reaction surprised her friends."
+    },
+    {
+        "word": "wistful",
+        "function": "adjective",
+        "definition": "Full of yearning or desire tinged with melancholy.",
+        "example": "He cast a wistful glance at the old house."
+    },
+    {
+        "word": "abject",
+        "function": "adjective",
+        "definition": "Extremely bad, unpleasant, and degrading.",
+        "example": "He lived in abject misery after the loss."
+    },
+    {
+        "word": "idyllic",
+        "function": "adjective",
+        "definition": "Extremely happy, peaceful, or picturesque.",
+        "example": "They enjoyed an idyllic afternoon by the lake."
+    },
+    {
+        "word": "effusive",
+        "function": "adjective",
+        "definition": "Expressing feelings of gratitude or pleasure in an unrestrained way.",
+        "example": "She gave him an effusive welcome."
+    },
+    {
+        "word": "nonchalant",
+        "function": "adjective",
+        "definition": "Calm and relaxed; not displaying anxiety.",
+        "example": "He gave a nonchalant shrug."
+    },
+    {
+        "word": "contrary",
+        "function": "adjective",
+        "definition": "Opposite in nature or character.",
+        "example": "Her contrary mood made collaboration difficult."
+    },
+    {
+        "word": "lament",
+        "function": "verb",
+        "definition": "To express sorrow or regret.",
+        "example": "They lamented the passing of an era."
+    },
+    {
+        "word": "evasive",
+        "function": "adjective",
+        "definition": "Tending to avoid commitment or self-revelation.",
+        "example": "His evasive answer avoided the real issue."
+    }
+]
